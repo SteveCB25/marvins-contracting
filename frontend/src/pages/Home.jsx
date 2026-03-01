@@ -206,7 +206,59 @@ const Home = () => {
             <p className="text-lg text-gray-600">{t.portfolio.subtitle}</p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Mobile: Horizontal Scroll */}
+          <div className="block lg:hidden">
+            <div className="overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+              <div className="flex gap-4 pb-4">
+                {isLoadingGallery ? (
+                  // Loading skeletons
+                  Array.from({ length: 6 }).map((_, index) => (
+                    <div key={index} className="flex-shrink-0 w-[85vw] h-[300px] bg-gray-300 rounded-lg animate-pulse"></div>
+                  ))
+                ) : (
+                  galleryImages.map((image, index) => (
+                    <div
+                      key={image.id}
+                      onClick={() => handleImageClick(index)}
+                      className="flex-shrink-0 w-[85vw] snap-center relative group cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all"
+                    >
+                      <img
+                        src={image.thumbnail || image.url}
+                        alt={image.alt}
+                        className="w-full h-[300px] object-cover group-active:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <div className="text-center text-white px-4">
+                          <p className="font-semibold text-lg mb-1">{image.category?.charAt(0).toUpperCase() + image.category?.slice(1)}</p>
+                          <p className="text-sm opacity-90">{t.portfolio.viewAll}</p>
+                        </div>
+                      </div>
+                      {/* Swipe indicator on first image */}
+                      {index === 0 && (
+                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-xs px-3 py-1 rounded-full animate-pulse">
+                          {language === 'en' ? 'Swipe for more →' : 'Desliza para más →'}
+                        </div>
+                      )}
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+            {/* Scroll indicator dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {!isLoadingGallery && galleryImages.length > 0 && (
+                <>
+                  {Array.from({ length: Math.min(5, Math.ceil(galleryImages.length / 5)) }).map((_, index) => (
+                    <div key={index} className="w-2 h-2 rounded-full bg-gray-300"></div>
+                  ))}
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Desktop: Grid Layout */}
+          <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {isLoadingGallery ? (
               // Loading skeletons
               Array.from({ length: 6 }).map((_, index) => (
