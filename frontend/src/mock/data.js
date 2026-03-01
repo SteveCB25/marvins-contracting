@@ -49,7 +49,18 @@ export const translations = {
     about: {
       title: 'About Us',
       subtitle: 'Your trusted partner in construction',
-      content: 'Content coming soon...'
+      intro: 'We\'re a locally owned and operated contracting business built on one simple belief: do the job right the first time.',
+      paragraph1: 'With years of hands-on experience, we specialize in delivering high-quality craftsmanship, honest communication, and dependable service. Whether it\'s a small repair or a full renovation, we treat every home like it\'s our own, with care, respect, and attention to detail.',
+      paragraph2: 'Our reputation has grown through word of mouth, repeat customers, and neighbors who trust us. We show up when we say we will. We keep our job sites clean. And we don\'t consider a project complete until you\'re satisfied.',
+      focusTitle: 'From planning to completion, we focus on:',
+      focusPoints: [
+        'Clear timelines',
+        'Fair pricing',
+        'Quality materials',
+        'Skilled workmanship'
+      ],
+      closing: 'We understand that inviting someone to work on your home is a big decision. That\'s why we prioritize transparency, reliability, and results you can be proud of.',
+      finalNote: 'If you\'re looking for a contractor who values integrity and stands behind their work, we\'d be honored to earn your trust.'
     },
     contact: {
       title: 'Get In Touch',
