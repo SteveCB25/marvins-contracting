@@ -37,6 +37,28 @@ const Home = () => {
     message: ''
   });
 
+  // Fetch gallery images from API
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        const response = await axios.get(`${API}/gallery`);
+        if (response.data && response.data.images) {
+          setGalleryImages(response.data.images);
+        } else {
+          // Fallback to mock data
+          setGalleryImages(fallbackGalleryImages);
+        }
+      } catch (error) {
+        console.error('Failed to fetch gallery:', error);
+        // Fallback to mock data
+        setGalleryImages(fallbackGalleryImages);
+      } finally {
+        setIsLoadingGallery(false);
+      }
+    };
+    fetchGallery();
+  }, []);
+
   const handleImageClick = (index) => {
     setCurrentImageIndex(index);
     setLightboxOpen(true);
