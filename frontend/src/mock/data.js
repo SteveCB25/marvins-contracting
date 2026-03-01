@@ -127,7 +127,18 @@ export const translations = {
     about: {
       title: 'Sobre Nosotros',
       subtitle: 'Su socio de confianza en construcción',
-      content: 'Contenido próximamente...'
+      intro: 'Somos una empresa de contratación de propiedad y operación local construida sobre una creencia simple: hacer el trabajo bien la primera vez.',
+      paragraph1: 'Con años de experiencia práctica, nos especializamos en ofrecer artesanía de alta calidad, comunicación honesta y servicio confiable. Ya sea una pequeña reparación o una renovación completa, tratamos cada hogar como si fuera nuestro, con cuidado, respeto y atención al detalle.',
+      paragraph2: 'Nuestra reputación ha crecido a través del boca a boca, clientes habituales y vecinos que confían en nosotros. Aparecemos cuando decimos que lo haremos. Mantenemos nuestros sitios de trabajo limpios. Y no consideramos un proyecto completo hasta que usted esté satisfecho.',
+      focusTitle: 'Desde la planificación hasta la finalización, nos enfocamos en:',
+      focusPoints: [
+        'Plazos claros',
+        'Precios justos',
+        'Materiales de calidad',
+        'Mano de obra calificada'
+      ],
+      closing: 'Entendemos que invitar a alguien a trabajar en su hogar es una gran decisión. Por eso priorizamos la transparencia, la confiabilidad y los resultados de los que puede estar orgulloso.',
+      finalNote: 'Si está buscando un contratista que valore la integridad y respalde su trabajo, sería un honor ganar su confianza.'
     },
     contact: {
       title: 'Contáctenos',
