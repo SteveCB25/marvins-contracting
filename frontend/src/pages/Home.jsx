@@ -79,19 +79,37 @@ const Home = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // MOCK: Store in localStorage for now
-    const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
-    submissions.push({ ...formData, timestamp: new Date().toISOString() });
-    localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
+    setIsSubmitting(true);
     
-    toast({
-      title: t.contact.success,
-      description: language === 'en' ? 'We will get back to you shortly.' : 'Nos pondremos en contacto con usted en breve.',
-    });
-    
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    try {
+      const response = await axios.post(`${API}/contact`, {
+        ...formData,
+        language
+      });
+      
+      if (response.data.success) {
+        toast({
+          title: t.contact.success,
+          description: language === 'en' 
+            ? 'We will get back to you shortly.' 
+            : 'Nos pondremos en contacto con usted en breve.',
+        });
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      }
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast({
+        title: language === 'en' ? 'Error' : 'Error',
+        description: language === 'en' 
+          ? 'Failed to submit inquiry. Please try again.' 
+          : 'Error al enviar la consulta. Por favor, inténtelo de nuevo.',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const serviceIcons = {
