@@ -1,7 +1,7 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, Depends
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
+from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 import os
 import logging
 from pathlib import Path
@@ -9,6 +9,9 @@ from pydantic import BaseModel, Field, ConfigDict
 from typing import List
 import uuid
 from datetime import datetime, timezone
+
+# Import routes
+from routes import contact, gallery
 
 
 ROOT_DIR = Path(__file__).parent
@@ -20,10 +23,15 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 # Create the main app without a prefix
-app = FastAPI()
+app = FastAPI(title="Marvin's Contracting API")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
+
+
+# Database dependency
+async def get_database() -> AsyncIOMotorDatabase:
+    return db
 
 
 # Define Models
@@ -65,6 +73,31 @@ async def get_status_checks():
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
     
     return status_checks
+
+
+# Include contact routes
+@api_router.post("/contact", status_code=201)
+async def create_contact(inquiry_input: contact.ContactInquiryCreate, database: AsyncIOMotorDatabase = Depends(get_database)):
+    return await contact.create_contact_inquiry(inquiry_input, database)
+
+@api_router.get("/contact")
+async def get_contacts(database: AsyncIOMotorDatabase = Depends(get_database), limit: int = 100):
+    return await contact.get_contact_inquiries(database, limit)
+
+
+# Include gallery routes
+@api_router.get("/gallery")
+async def get_gallery(database: AsyncIOMotorDatabase = Depends(get_database), category: str = None):
+    return await gallery.get_gallery_images(database, category)
+
+@api_router.get("/gallery/{category}")
+async def get_gallery_cat(category: str, database: AsyncIOMotorDatabase = Depends(get_database)):
+    return await gallery.get_gallery_by_category(category, database)
+
+@api_router.post("/gallery", status_code=201)
+async def create_gallery(image_input: gallery.GalleryImageCreate, database: AsyncIOMotorDatabase = Depends(get_database)):
+    return await gallery.create_gallery_image(image_input, database)
+
 
 # Include the router in the main app
 app.include_router(api_router)
