@@ -340,9 +340,13 @@ const Home = () => {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full bg-[#D4AF37] hover:bg-[#C5A028] text-[#1F1F1F] font-bold py-6 rounded-md transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#D4AF37] hover:bg-[#C5A028] text-[#1F1F1F] font-bold py-6 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {t.contact.form.submit}
+                  {isSubmitting 
+                    ? (language === 'en' ? 'Sending...' : 'Enviando...') 
+                    : t.contact.form.submit
+                  }
                 </Button>
               </form>
             </CardContent>
