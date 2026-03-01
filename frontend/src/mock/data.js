@@ -137,48 +137,91 @@ export const translations = {
   }
 };
 
-// Placeholder gallery images (Unsplash construction images)
-export const galleryImages = [
-  {
-    id: 1,
-    url: 'https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=800&q=80',
-    thumbnail: 'https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400&q=80',
-    alt: 'Kitchen Remodeling Project',
-    category: 'kitchen'
-  },
-  {
-    id: 2,
-    url: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80',
-    thumbnail: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=80',
-    alt: 'Bathroom Renovation',
-    category: 'bathroom'
-  },
-  {
-    id: 3,
-    url: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=80',
-    thumbnail: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&q=80',
-    alt: 'Flooring Installation',
-    category: 'flooring'
-  },
-  {
-    id: 4,
-    url: 'https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&q=80',
-    thumbnail: 'https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=400&q=80',
-    alt: 'Interior Painting',
-    category: 'painting'
-  },
-  {
-    id: 5,
-    url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80',
-    thumbnail: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&q=80',
-    alt: 'Modern Kitchen',
-    category: 'kitchen'
-  },
-  {
-    id: 6,
-    url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-    thumbnail: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80',
-    alt: 'Home Renovation',
-    category: 'general'
-  }
+// Marvin's actual work photos - categorized by service type
+const kitchenImages = [
+  "FB_IMG_1704681945343.JPG", "FB_IMG_1772312454150.JPG", "FB_IMG_1772312664284.JPG",
+  "FB_IMG_1772312803305.JPG", "FB_IMG_1772312809422.JPG", "FB_IMG_1772312890792.JPG",
+  "FB_IMG_1772312900616.JPG", "FB_IMG_1772312921552.JPG", "FB_IMG_1772313015765.JPG",
+  "Resized_20241121_174316.JPEG", "Resized_20250718_091900.JPEG", "Resized_20260227_163630.JPEG"
 ];
+
+const bathroomImages = [
+  "FB_IMG_1772312397483.JPG", "FB_IMG_1772312404253.JPG", "FB_IMG_1772312424140.JPG",
+  "FB_IMG_1772312429877.JPG", "FB_IMG_1772312544046.JPG", "FB_IMG_1772312557480.JPG",
+  "FB_IMG_1772312566473.JPG", "FB_IMG_1772312591731.JPG", "FB_IMG_1772312638258.JPG",
+  "FB_IMG_1772312731235.JPG", "FB_IMG_1772312759311.JPG", "FB_IMG_1772312770743.JPG",
+  "FB_IMG_1772312849677.JPG", "FB_IMG_1772312853264.JPG", "FB_IMG_1772312859989.JPG",
+  "FB_IMG_1772312864303.JPG", "FB_IMG_1772312870222.JPG", "FB_IMG_1772312883598.JPG",
+  "FB_IMG_1772312887790.JPG", "FB_IMG_1772312897981.JPG", "FB_IMG_1772312934586.JPG",
+  "FB_IMG_1772312941558.JPG", "FB_IMG_1772312955937.JPG", "FB_IMG_1772313045982.JPG",
+  "Resized_20231103_160554.JPEG", "Resized_20241112_191053.JPEG", "Resized_20241121_174319.JPEG",
+  "Resized_20241121_174319 2.JPEG", "Resized_20241121_174322.JPEG", "Resized_20250312_132015.JPEG",
+  "Resized_20251119_170928.JPEG", "Resized_FB_IMG_1772312788195.JPEG"
+];
+
+const flooringImages = [
+  "FB_IMG_1772312500865.JPG", "FB_IMG_1772312600221.JPG", "FB_IMG_1772312618114.JPG",
+  "FB_IMG_1772312627998.JPG", "FB_IMG_1772312657762.JPG", "FB_IMG_1772312749659.JPG",
+  "FB_IMG_1772312952304.JPG", "FB_IMG_1772312966722.JPG", "Resized_20231112_131423.JPEG",
+  "Resized_20241112_190908.JPEG", "Resized_20241121_173258.JPEG", "Resized_20241125_172118.JPEG",
+  "Resized_20241125_172134.JPEG", "Resized_20250312_131534.JPEG", "Resized_20250430_134100.JPEG",
+  "Resized_20250718_091121.JPEG", "Resized_20251119_160958.JPEG", "Resized_20251221_151247.JPEG",
+  "Resized_20251221_151252.JPEG", "Resized_20260115_142231.JPEG", "Resized_20260115_142256.JPEG"
+];
+
+const paintingImages = [
+  "FB_IMG_1704681957047.JPG", "FB_IMG_1772312677184 2.JPG", "FB_IMG_1772312693586.JPG",
+  "FB_IMG_1772312710250.JPG", "FB_IMG_1772312949226.JPG", "Resized_20240919_151128.JPEG",
+  "Resized_20250718_091853.JPEG", "Resized_20250827_150451.JPEG", "Resized_20260227_163616.JPEG",
+  "Resized_20260227_163638.JPEG", "Resized_FB_IMG_1772312791238.JPEG"
+];
+
+// Generate gallery array from categorized images
+const generateGalleryImages = () => {
+  let id = 1;
+  const gallery = [];
+  
+  kitchenImages.forEach(img => {
+    gallery.push({
+      id: id++,
+      url: `/portfolio/${img}`,
+      thumbnail: `/portfolio/${img}`,
+      alt: 'Kitchen Remodeling by Marvin\'s Contracting',
+      category: 'kitchen'
+    });
+  });
+  
+  bathroomImages.forEach(img => {
+    gallery.push({
+      id: id++,
+      url: `/portfolio/${img}`,
+      thumbnail: `/portfolio/${img}`,
+      alt: 'Bathroom Renovation by Marvin\'s Contracting',
+      category: 'bathroom'
+    });
+  });
+  
+  flooringImages.forEach(img => {
+    gallery.push({
+      id: id++,
+      url: `/portfolio/${img}`,
+      thumbnail: `/portfolio/${img}`,
+      alt: 'Flooring Installation by Marvin\'s Contracting',
+      category: 'flooring'
+    });
+  });
+  
+  paintingImages.forEach(img => {
+    gallery.push({
+      id: id++,
+      url: `/portfolio/${img}`,
+      thumbnail: `/portfolio/${img}`,
+      alt: 'Painting Services by Marvin\'s Contracting',
+      category: 'painting'
+    });
+  });
+  
+  return gallery;
+};
+
+export const galleryImages = generateGalleryImages();
