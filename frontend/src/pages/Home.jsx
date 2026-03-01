@@ -407,11 +407,7 @@ const Home = () => {
           <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6 text-gray-300">
             <div className="flex items-center gap-2">
               <Phone className="w-5 h-5 text-[#D4AF37]" />
-              <span>(555) 123-4567</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail className="w-5 h-5 text-[#D4AF37]" />
-              <span>info@marvinscontracting.com</span>
+              <span>(240) 467-4308</span>
             </div>
           </div>
         </div>
