@@ -182,11 +182,46 @@ const Home = () => {
 
       {/* About Section */}
       <section id="about" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1F1F1F] mb-4">{t.about.title}</h2>
             <p className="text-lg text-gray-600">{t.about.subtitle}</p>
-            <p className="text-gray-500 mt-4 italic">{t.about.content}</p>
+          </div>
+          
+          <div className="space-y-6 text-gray-700 leading-relaxed">
+            <p className="text-xl font-semibold text-[#1F1F1F] text-center">
+              {t.about.intro}
+            </p>
+            
+            <p className="text-base">
+              {t.about.paragraph1}
+            </p>
+            
+            <p className="text-base">
+              {t.about.paragraph2}
+            </p>
+            
+            <div className="bg-white rounded-lg p-8 shadow-md my-8">
+              <h3 className="text-xl font-bold text-[#1F1F1F] mb-6 text-center">
+                {t.about.focusTitle}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {t.about.focusPoints.map((point, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-[#D4AF37] rounded-full flex-shrink-0"></div>
+                    <span className="text-[#1F1F1F] font-medium">{point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <p className="text-base">
+              {t.about.closing}
+            </p>
+            
+            <p className="text-base font-semibold text-[#1F1F1F] italic text-center pt-4">
+              {t.about.finalNote}
+            </p>
           </div>
         </div>
       </section>
