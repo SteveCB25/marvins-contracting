@@ -207,22 +207,32 @@ const Home = () => {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryImages.map((image, index) => (
-              <div
-                key={image.id}
-                onClick={() => handleImageClick(index)}
-                className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all"
-              >
-                <img
-                  src={image.thumbnail}
-                  alt={image.alt}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <p className="text-white font-medium">{t.portfolio.viewAll}</p>
+            {isLoadingGallery ? (
+              // Loading skeletons
+              Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="relative overflow-hidden rounded-lg shadow-md animate-pulse">
+                  <div className="w-full h-64 bg-gray-300"></div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              galleryImages.map((image, index) => (
+                <div
+                  key={image.id}
+                  onClick={() => handleImageClick(index)}
+                  className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all"
+                >
+                  <img
+                    src={image.thumbnail || image.url}
+                    alt={image.alt}
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <p className="text-white font-medium">{t.portfolio.viewAll}</p>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
