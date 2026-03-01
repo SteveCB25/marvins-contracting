@@ -10,10 +10,9 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/gallery", tags=["gallery"])
 
 
-@router.get("", response_model=dict)
 async def get_gallery_images(
     db: AsyncIOMotorDatabase,
-    category: Optional[str] = Query(None, description="Filter by category")
+    category: Optional[str] = None
 ):
     """
     Get all active gallery images, optionally filtered by category
@@ -23,7 +22,7 @@ async def get_gallery_images(
         if category:
             query["category"] = category
         
-        images = await db.gallery_images.find(query).sort("order", 1).to_list(1000)
+        images = await db.gallery_images.find(query, {"_id": 0}).sort("order", 1).to_list(1000)
         
         return {
             "images": [
@@ -45,7 +44,6 @@ async def get_gallery_images(
         )
 
 
-@router.get("/{category}", response_model=dict)
 async def get_gallery_by_category(category: str, db: AsyncIOMotorDatabase):
     """
     Get gallery images for a specific category
@@ -60,7 +58,6 @@ async def get_gallery_by_category(category: str, db: AsyncIOMotorDatabase):
     return await get_gallery_images(db, category=category)
 
 
-@router.post("", response_model=GalleryImage, status_code=status.HTTP_201_CREATED)
 async def create_gallery_image(image_input: GalleryImageCreate, db: AsyncIOMotorDatabase):
     """
     Add a new image to the gallery (admin)
@@ -81,8 +78,12 @@ async def create_gallery_image(image_input: GalleryImageCreate, db: AsyncIOMotor
             order=image_input.order
         )
         
+        # Convert datetime to ISO string for MongoDB
+        doc = gallery_image.dict()
+        doc['created_at'] = doc['created_at'].isoformat()
+        
         # Save to database
-        result = await db.gallery_images.insert_one(gallery_image.dict())
+        result = await db.gallery_images.insert_one(doc)
         
         if not result.inserted_id:
             raise HTTPException(
@@ -91,7 +92,7 @@ async def create_gallery_image(image_input: GalleryImageCreate, db: AsyncIOMotor
             )
         
         logger.info(f"New gallery image created: {gallery_image.id}")
-        return gallery_image
+        return gallery_image.dict()
         
     except Exception as e:
         logger.error(f"Error creating gallery image: {str(e)}")
