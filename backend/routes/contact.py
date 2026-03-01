@@ -11,12 +11,6 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/contact", tags=["contact"])
 
 
-def get_db():
-    """Dependency to get database - will be injected"""
-    pass
-
-
-@router.post("", response_model=dict, status_code=status.HTTP_201_CREATED)
 async def create_contact_inquiry(inquiry_input: ContactInquiryCreate, db: AsyncIOMotorDatabase):
     """
     Submit a new contact inquiry
@@ -25,8 +19,13 @@ async def create_contact_inquiry(inquiry_input: ContactInquiryCreate, db: AsyncI
         # Create inquiry object
         inquiry = ContactInquiry(**inquiry_input.dict())
         
+        # Convert datetime to ISO string for MongoDB
+        doc = inquiry.dict()
+        doc['created_at'] = doc['created_at'].isoformat()
+        doc['updated_at'] = doc['updated_at'].isoformat()
+        
         # Save to database
-        result = await db.contact_inquiries.insert_one(inquiry.dict())
+        result = await db.contact_inquiries.insert_one(doc)
         
         if not result.inserted_id:
             raise HTTPException(
@@ -57,14 +56,23 @@ async def create_contact_inquiry(inquiry_input: ContactInquiryCreate, db: AsyncI
         )
 
 
-@router.get("", response_model=List[ContactInquiry])
 async def get_contact_inquiries(db: AsyncIOMotorDatabase, limit: int = 100):
     """
     Get all contact inquiries (admin)
     """
     try:
-        inquiries = await db.contact_inquiries.find().sort("created_at", -1).limit(limit).to_list(limit)
-        return [ContactInquiry(**inquiry) for inquiry in inquiries]
+        inquiries = await db.contact_inquiries.find({}, {"_id": 0}).sort("created_at", -1).limit(limit).to_list(limit)
+        
+        # Convert ISO strings back to datetime for response
+        for inquiry in inquiries:
+            if isinstance(inquiry.get('created_at'), str):
+                from datetime import datetime
+                inquiry['created_at'] = datetime.fromisoformat(inquiry['created_at'])
+            if isinstance(inquiry.get('updated_at'), str):
+                from datetime import datetime
+                inquiry['updated_at'] = datetime.fromisoformat(inquiry['updated_at'])
+        
+        return inquiries
     except Exception as e:
         logger.error(f"Error fetching contact inquiries: {str(e)}")
         raise HTTPException(
