@@ -224,14 +224,15 @@ const Home = () => {
                   <div
                     key={image.id}
                     onClick={() => handleImageClick(index)}
-                    className="flex-shrink-0 w-[85vw] sm:w-[400px] lg:w-[450px] snap-center relative group cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all"
+                    className="flex-shrink-0 w-[85vw] sm:w-[400px] lg:w-[450px] snap-center relative group cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all bg-gray-200"
                   >
                     <img
                       src={image.thumbnail}
                       alt={image.alt}
                       className="w-full h-[300px] sm:h-[350px] object-cover group-hover:scale-105 transition-transform duration-300"
-                      loading={index < 4 ? "eager" : "lazy"}
-                      decoding="async"
+                      loading={index < 3 ? "eager" : "lazy"}
+                      decoding={index < 3 ? "sync" : "async"}
+                      fetchPriority={index < 3 ? "high" : "low"}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-100 flex items-end justify-center pb-6">
                       <div className="text-center text-white px-4">
