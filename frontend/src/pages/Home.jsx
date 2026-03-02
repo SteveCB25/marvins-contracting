@@ -268,14 +268,28 @@ const Home = () => {
 
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center pt-20">
-        {/* Background Image */}
+        {/* Background Image with blur placeholder */}
         <div className="absolute inset-0 z-0">
           {heroImage && (
-            <img 
-              src={heroImage.url || heroImage.thumbnail}
-              alt="Quality craftsmanship"
-              className="w-full h-full object-cover"
-            />
+            <>
+              {/* Blur placeholder - shows immediately */}
+              {heroImage.blur && (
+                <img 
+                  src={heroImage.blur}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ filter: 'blur(20px)', transform: 'scale(1.1)' }}
+                  aria-hidden="true"
+                />
+              )}
+              <img 
+                src={heroImage.thumbnail}
+                alt="Quality craftsmanship"
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </>
           )}
           <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A]/90 via-[#1A1A1A]/70 to-transparent" />
         </div>
