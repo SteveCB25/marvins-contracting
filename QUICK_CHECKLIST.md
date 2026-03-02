@@ -1,7 +1,7 @@
 # 🚀 Quick Production Checklist
 
 ## YOUR SITE IS LIVE AT:
-**https://contractor-elite.preview.emergentagent.com**
+**https://contractor-showcase-3.preview.emergentagent.com**
 
 ---
 
@@ -35,7 +35,7 @@ Location: `/app/frontend/src/pages/Home.jsx` (line ~330)
 - Email address
 
 ### 2. Test the Live Site
-✅ Open: https://contractor-elite.preview.emergentagent.com
+✅ Open: https://contractor-showcase-3.preview.emergentagent.com
 ✅ Submit contact form (test inquiry)
 ✅ Swipe gallery on mobile
 ✅ Test language toggle (EN/ES)
@@ -55,7 +55,7 @@ Then: `sudo supervisorctl restart backend`
 
 **The site is ready!** Here's what you can tell him:
 
-> "Your portfolio website is live at: https://contractor-elite.preview.emergentagent.com
+> "Your portfolio website is live at: https://contractor-showcase-3.preview.emergentagent.com
 > 
 > ✅ All 76 of your work photos are organized
 > ✅ Contact form works (inquiries saved)  
@@ -86,7 +86,7 @@ Add website link to Google Business Profile
 ## 📞 VIEW CONTACT SUBMISSIONS:
 
 **Via Browser:**
-https://contractor-elite.preview.emergentagent.com/api/contact
+https://contractor-showcase-3.preview.emergentagent.com/api/contact
 
 **Via Terminal:**
 ```bash

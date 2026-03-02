@@ -31,7 +31,7 @@ WHATSAPP_API_URL=https://api.twilio.com/...
 #### Frontend (.env)
 ```bash
 # Backend URL - ✅ Already configured
-REACT_APP_BACKEND_URL=https://contractor-elite.preview.emergentagent.com
+REACT_APP_BACKEND_URL=https://contractor-showcase-3.preview.emergentagent.com
 
 # WebSocket - ✅ Configured
 WDS_SOCKET_PORT=443
@@ -47,8 +47,8 @@ Run comprehensive tests before deploying:
 
 ```bash
 # Test backend endpoints
-curl https://contractor-elite.preview.emergentagent.com/api/gallery
-curl https://contractor-elite.preview.emergentagent.com/api/
+curl https://contractor-showcase-3.preview.emergentagent.com/api/gallery
+curl https://contractor-showcase-3.preview.emergentagent.com/api/
 
 # Check frontend build
 cd /app/frontend && yarn build
@@ -64,7 +64,7 @@ I can trigger the deployment agent to:
 
 **Option B: Manual Verification**
 Your app is already running on:
-- **Preview URL**: https://contractor-elite.preview.emergentagent.com
+- **Preview URL**: https://contractor-showcase-3.preview.emergentagent.com
 - This preview can be promoted to production
 
 ### Step 3: Custom Domain Setup (Optional)
@@ -184,7 +184,7 @@ sudo supervisorctl status
 ### View Contact Inquiries
 ```bash
 # Via API (from browser)
-https://contractor-elite.preview.emergentagent.com/api/contact
+https://contractor-showcase-3.preview.emergentagent.com/api/contact
 
 # Via MongoDB (from terminal)
 cd /app/backend && python3 -c "
@@ -216,7 +216,7 @@ asyncio.run(get_contacts())
 tail -n 50 /var/log/supervisor/backend.err.log
 
 # Test API directly
-curl -X POST https://contractor-elite.preview.emergentagent.com/api/contact \
+curl -X POST https://contractor-showcase-3.preview.emergentagent.com/api/contact \
   -H "Content-Type: application/json" \
   -d '{"name":"Test","email":"test@test.com","phone":"555-1234","message":"Test","language":"en"}'
 ```
@@ -224,7 +224,7 @@ curl -X POST https://contractor-elite.preview.emergentagent.com/api/contact \
 ### Issue: Gallery Not Loading
 ```bash
 # Check gallery API
-curl https://contractor-elite.preview.emergentagent.com/api/gallery
+curl https://contractor-showcase-3.preview.emergentagent.com/api/gallery
 
 # Verify images exist
 ls -la /app/frontend/public/portfolio/ | wc -l
@@ -280,6 +280,6 @@ sudo supervisorctl restart backend
 
 ## 📝 Current Production URL
 
-**Live Site**: https://contractor-elite.preview.emergentagent.com
+**Live Site**: https://contractor-showcase-3.preview.emergentagent.com
 
 Ready to deploy! 🚀
