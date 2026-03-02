@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { galleryImages as fallbackGalleryImages } from '../mock/data';
 import Lightbox from '../components/Lightbox';
+import OptimizedImage from '../components/OptimizedImage';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
@@ -13,7 +14,6 @@ import {
   Layers,
   PaintRoller,
   Phone,
-  Mail,
   MapPin,
   Shield,
   Star,
