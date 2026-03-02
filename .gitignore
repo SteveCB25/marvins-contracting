@@ -42,3 +42,4 @@ coverage/
 .cache/
 *.bak
 *.tmpfrontend/node_modules/.cache/default-development/0.pack
+frontend/node_modules/.cache/default-development/0.pack
