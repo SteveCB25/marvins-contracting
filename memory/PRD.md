@@ -17,7 +17,7 @@ Homeowners in Maryland looking for reliable, trustworthy contracting services fo
 ## Key Features
 
 ### Hero Section
-- Full-width background image from portfolio
+- Full-width background image from Cloudinary
 - Headline: "Quality Craftsmanship. Reliable Service."
 - Two CTAs: "Request a Free Estimate" (primary), "View Our Work" (secondary)
 - Licensed & Insured badge
@@ -34,57 +34,39 @@ Homeowners in Maryland looking for reliable, trustworthy contracting services fo
 - Bathroom Renovation
 - Flooring
 - Painting
-- Each with icon, description, "View Projects" link
 
 ### Portfolio Gallery
 - Category filter buttons (All, Kitchen, Bathroom, Flooring, Painting)
-- Grid layout with hover effects
+- 6 images displayed initially
 - Lightbox view for full images
-- 76 real project photos
+- 76 project photos served via Cloudinary CDN
 
 ### Before/After Section
 - Interactive comparison slider using react-compare-slider
 
 ### Contact Section
-- Split layout: info left, form right
 - Form fields: Name, Email, Phone, Service dropdown, Message
 - Formspree integration
-- Click-to-call phone
 
 ## Technical Stack
-- **Frontend:** React, Tailwind CSS, shadcn/ui
-- **Animations:** framer-motion
-- **Slider:** react-compare-slider
+- **Frontend:** React, Tailwind CSS, shadcn/ui, framer-motion
+- **Image CDN:** Cloudinary (cloud name: diwpfqeho)
 - **Form:** Formspree (https://formspree.io/f/mojnzzwr)
-- **Backend:** FastAPI (not currently connected)
-- **Database:** MongoDB Atlas (connection failing)
-- **Deployment:** Vercel (frontend), Railway (backend)
-- **Domain:** marvinscontracting.com (DNS configured)
+- **Deployment:** Vercel (frontend)
+- **Domain:** www.marvinscontracting.com
 
-## Current Status
-
-### Working
-- Complete frontend redesign with all sections
-- Bilingual support (EN/ES)
-- Gallery with category filters
-- Lightbox image viewer
-- Before/After slider
-- Contact form via Formspree
-- Performance optimized (thumbnails + lazy loading)
-- Custom domain DNS configured
-
-### Known Issues
-- Backend MongoDB connection failing (using mock data for gallery)
-- Root domain SSL certificate provisioning (www.marvinscontracting.com works)
+## Performance Optimizations
+- Cloudinary CDN with automatic WebP/AVIF conversion
+- Blur placeholders for instant visual feedback
+- Only 6 images loaded initially
+- No backend API calls (images served directly from Cloudinary)
 
 ## Contact Information
 - Phone: (240) 467-4308
 - Service Area: Maryland
 
 ## Files Reference
-- `frontend/src/pages/Home.jsx` - Main redesigned component
-- `frontend/src/mock/data.js` - Gallery images and translations
-- `frontend/src/components/Lightbox.jsx` - Image lightbox
-- `frontend/public/thumbnails/` - Optimized thumbnails (1.6MB total)
-- `frontend/public/portfolio/` - Full images (8.9MB total)
-- `design_guidelines.json` - Design system specs
+- `frontend/src/pages/Home.jsx` - Main component
+- `frontend/src/cloudinary-gallery.json` - Cloudinary image URLs
+- `frontend/src/mock/data.js` - Translations
+- `frontend/src/components/OptimizedImage.jsx` - Blur placeholder component
