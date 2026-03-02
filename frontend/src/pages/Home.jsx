@@ -43,42 +43,21 @@ const Home = () => {
       try {
         const response = await axios.get(`${API}/gallery`);
         if (response.data && response.data.images) {
-          setAllGalleryImages(response.data.images);
-          setVisibleImages(response.data.images.slice(0, 12));
+          setGalleryImages(response.data.images);
         } else {
           // Fallback to mock data
-          setAllGalleryImages(fallbackGalleryImages);
-          setVisibleImages(fallbackGalleryImages.slice(0, 12));
+          setGalleryImages(fallbackGalleryImages);
         }
       } catch (error) {
         console.error('Failed to fetch gallery:', error);
         // Fallback to mock data
-        setAllGalleryImages(fallbackGalleryImages);
-        setVisibleImages(fallbackGalleryImages.slice(0, 12));
+        setGalleryImages(fallbackGalleryImages);
       } finally {
         setIsLoadingGallery(false);
       }
     };
     fetchGallery();
   }, []);
-
-  // Load more images when user scrolls near the end
-  const loadMoreImages = () => {
-    if (loadedCount < allGalleryImages.length) {
-      const newCount = Math.min(loadedCount + 8, allGalleryImages.length);
-      setVisibleImages(allGalleryImages.slice(0, newCount));
-      setLoadedCount(newCount);
-    }
-  };
-
-  // Handle scroll in gallery to trigger loading more
-  const handleGalleryScroll = (e) => {
-    const container = e.target;
-    const scrollRight = container.scrollWidth - container.scrollLeft - container.clientWidth;
-    if (scrollRight < 500) {
-      loadMoreImages();
-    }
-  };
 
   const handleImageClick = (index) => {
     setCurrentImageIndex(index);
