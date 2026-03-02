@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { Toaster } from './components/ui/toaster';
 import Home from './pages/Home';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           </Routes>
         </BrowserRouter>
         <Toaster />
+        <SpeedInsights />
       </div>
     </LanguageProvider>
   );
