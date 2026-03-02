@@ -437,7 +437,7 @@ const Home = () => {
 
       {/* Lightbox */}
       <Lightbox
-        images={galleryImages}
+        images={allGalleryImages}
         currentIndex={currentImageIndex}
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
