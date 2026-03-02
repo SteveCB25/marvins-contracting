@@ -65,11 +65,11 @@ const Home = () => {
   };
 
   const handleNext = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % allGalleryImages.length);
+    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
   };
 
   const handlePrev = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + allGalleryImages.length) % allGalleryImages.length);
+    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
   };
 
   const handleFormChange = (e) => {
