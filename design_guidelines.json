@@ -1,0 +1,130 @@
+{
+  "identity": {
+    "persona": "E1: The Anti-AI Designer",
+    "principles": [
+      "Fusion over Imitation: Mix construction solidity with high-end gallery aesthetics.",
+      "Emotion First: Trust, reliability, and craftsmanship.",
+      "Content is King: Let the 76 real project photos do the talking.",
+      "Zoom In: Use detail shots of textures (wood, tile, paint) as backgrounds.",
+      "Negative Space: generous padding (p-12, p-24) to frame the work."
+    ]
+  },
+  "typography": {
+    "headings": {
+      "fontFamily": "\"Outfit\", sans-serif",
+      "weights": ["600", "700"],
+      "source": "https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap",
+      "usage": "Use for all H1-H6. Tight tracking (-0.02em). Uppercase for labels."
+    },
+    "body": {
+      "fontFamily": "\"Manrope\", sans-serif",
+      "weights": ["400", "500"],
+      "source": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap",
+      "usage": "Use for all paragraphs and UI text. Good legibility at small sizes."
+    }
+  },
+  "colors": {
+    "palette": {
+      "primary": "#1A1A1A",
+      "primary_foreground": "#FFFFFF",
+      "secondary": "#D4AF37",
+      "secondary_foreground": "#1A1A1A",
+      "background": "#FFFFFF",
+      "surface": "#F9FAFB",
+      "surface_highlight": "#F3F4F6",
+      "text_primary": "#111827",
+      "text_secondary": "#4B5563",
+      "border": "#E5E7EB",
+      "success": "#10B981",
+      "error": "#EF4444"
+    },
+    "usage_rules": [
+      "Do NOT use Gold (#D4AF37) for large backgrounds. Use it for buttons, icons, and active states only.",
+      "Use Charcoal (#1A1A1A) for the Footer and Trust Signals section background.",
+      "Keep the main content area White (#FFFFFF) to let the photos pop."
+    ]
+  },
+  "layout_strategy": {
+    "hero": {
+      "style": "Split Screen or Immersive Overlay",
+      "elements": [
+        "Headline: 'Quality Craftsmanship. Reliable Service.' (text-5xl md:text-7xl)",
+        "Subheadline: 'Trusted Local Contractor Serving Maryland'",
+        "CTAs: Primary (Gold) 'Request a Free Estimate', Secondary (Outline) 'View Our Work'",
+        "Background: High-quality completed kitchen or bathroom shot (use one of the best FB_IMG files).",
+        "Trust Badge: 'Licensed & Insured' clearly visible."
+      ]
+    },
+    "trust_signals": {
+      "style": "Horizontal Bar / Ticker",
+      "location": "Immediately below Hero",
+      "content": ["20+ Years Experience", "5-Star Rated", "Locally Owned", "Licensed & Insured"],
+      "design": "Charcoal background, Gold icons, White text."
+    },
+    "services": {
+      "style": "Bento Grid (Mode A)",
+      "grid_cols": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4",
+      "items": [
+        {"title": "Kitchen Remodeling", "span": "col-span-2 row-span-2", "icon": "ChefHat/Utensils"},
+        {"title": "Bathroom Renovation", "span": "col-span-1 row-span-2", "icon": "Bath"},
+        {"title": "Flooring", "span": "col-span-1 row-span-1", "icon": "Layers"},
+        {"title": "Painting", "span": "col-span-1 row-span-1", "icon": "PaintRoller"}
+      ]
+    },
+    "gallery": {
+      "style": "Masonry Grid with Lightbox",
+      "interactivity": "Filter by category (Kitchen, Bath, Flooring, etc.)",
+      "feature": "Before/After Slider component for top transformations."
+    },
+    "contact": {
+      "style": "Split Layout (Form Left / Info + Map Right)",
+      "form_integration": "Formspree",
+      "fields": ["Name", "Phone", "Email", "Service Type", "Message"]
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#D4AF37] text-white hover:bg-[#B5952F] rounded-none px-8 py-4 font-bold tracking-wide uppercase text-sm",
+      "secondary": "border-2 border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white rounded-none px-8 py-4 font-bold tracking-wide uppercase text-sm"
+    },
+    "cards": {
+      "style": "bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group",
+      "content_padding": "p-8"
+    },
+    "before_after_slider": {
+      "library": "Custom implementation or 'react-compare-slider'",
+      "description": "Draggable slider to reveal the 'After' image over the 'Before' image."
+    }
+  },
+  "assets": {
+    "icons": {
+      "library": "lucide-react",
+      "style": "Stroke width 1.5px, large size (w-8 h-8)"
+    },
+    "images": {
+      "source": "Local directory: /app/frontend/public/portfolio",
+      "instructions": "Scan the directory. Use a random selection for the initial render, but verify dimensions if possible. Prioritize landscape images for Hero."
+    }
+  },
+  "accessibility": {
+    "rules": [
+      "Ensure Gold text on White background has sufficient contrast (it often fails). Use Gold for graphical elements, use Dark Gold or Charcoal for text.",
+      "Alt text for all project images describing the work done.",
+      "Keyboard navigation for the Lightbox and Before/After slider."
+    ]
+  },
+  "instructions_to_main_agent": [
+    "1. Theme Setup: Configure Tailwind colors in `tailwind.config.js`.",
+    "2. Font Setup: Add Google Fonts imports to `index.css`.",
+    "3. Image Logic: Create a utility to map `FB_IMG_...` filenames to specific categories (Kitchen, Bath, etc.) if possible, or use a randomized display if metadata is missing. Since filenames are generic, you might need to manually tag a few for the Hero/Services, or build a simple 'admin' helper to view them.",
+    "4. Components: Build `BeforeAfterSlider.jsx` and `ProjectLightbox.jsx`.",
+    "5. Form: Hook up the Contact form to Formspree.",
+    "6. Bilingual: Implement a simple Context for Language (EN/ES) toggling all text."
+  ],
+  "universal_guidelines": [
+    "Do NOT use gradients for text.",
+    "Do NOT center align long paragraphs.",
+    "Use plenty of whitespace (p-12, p-24).",
+    "Animation: Use `framer-motion` for scroll reveals (fade-up)."
+  ]
+}
