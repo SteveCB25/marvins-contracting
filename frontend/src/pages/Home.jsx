@@ -397,8 +397,9 @@ const Home = () => {
                       <img 
                         src={serviceImage.thumbnail}
                         alt={service.title}
-                        className="w-full h-full object-cover opacity-20 group-hover:opacity-30 group-hover:scale-105 transition-all duration-500"
+                        className="w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-500"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-white/60" />
                     </div>
                   )}
                   
