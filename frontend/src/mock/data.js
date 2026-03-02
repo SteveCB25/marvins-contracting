@@ -207,7 +207,7 @@ const generateGalleryImages = () => {
     gallery.push({
       id: id++,
       url: `/portfolio/${img}`,
-      thumbnail: `/portfolio/${img}`,
+      thumbnail: `/thumbnails/${img}`,
       alt: 'Kitchen Remodeling by Marvin\'s Contracting',
       category: 'kitchen'
     });
@@ -217,7 +217,7 @@ const generateGalleryImages = () => {
     gallery.push({
       id: id++,
       url: `/portfolio/${img}`,
-      thumbnail: `/portfolio/${img}`,
+      thumbnail: `/thumbnails/${img}`,
       alt: 'Bathroom Renovation by Marvin\'s Contracting',
       category: 'bathroom'
     });
@@ -227,7 +227,7 @@ const generateGalleryImages = () => {
     gallery.push({
       id: id++,
       url: `/portfolio/${img}`,
-      thumbnail: `/portfolio/${img}`,
+      thumbnail: `/thumbnails/${img}`,
       alt: 'Flooring Installation by Marvin\'s Contracting',
       category: 'flooring'
     });
@@ -237,7 +237,7 @@ const generateGalleryImages = () => {
     gallery.push({
       id: id++,
       url: `/portfolio/${img}`,
-      thumbnail: `/portfolio/${img}`,
+      thumbnail: `/thumbnails/${img}`,
       alt: 'Painting Services by Marvin\'s Contracting',
       category: 'painting'
     });
