@@ -198,46 +198,66 @@ const paintingImages = [
   "Resized_20260227_163638.JPEG", "Resized_FB_IMG_1772312791238.JPEG"
 ];
 
+// Import blur placeholders
+import blurPlaceholders from '../blur-placeholders.json';
+
+// Helper to get WebP path and blur placeholder
+const getImagePaths = (img) => {
+  const baseName = img.replace(/\.(jpg|jpeg|png)$/i, '');
+  return {
+    webp: `/webp/${baseName}.webp`,
+    blur: blurPlaceholders[img] || null
+  };
+};
+
 // Generate gallery array from categorized images
 const generateGalleryImages = () => {
   let id = 1;
   const gallery = [];
   
   kitchenImages.forEach(img => {
+    const paths = getImagePaths(img);
     gallery.push({
       id: id++,
       url: `/portfolio/${img}`,
-      thumbnail: `/thumbnails/${img}`,
+      thumbnail: paths.webp,
+      blur: paths.blur,
       alt: 'Kitchen Remodeling by Marvin\'s Contracting',
       category: 'kitchen'
     });
   });
   
   bathroomImages.forEach(img => {
+    const paths = getImagePaths(img);
     gallery.push({
       id: id++,
       url: `/portfolio/${img}`,
-      thumbnail: `/thumbnails/${img}`,
+      thumbnail: paths.webp,
+      blur: paths.blur,
       alt: 'Bathroom Renovation by Marvin\'s Contracting',
       category: 'bathroom'
     });
   });
   
   flooringImages.forEach(img => {
+    const paths = getImagePaths(img);
     gallery.push({
       id: id++,
       url: `/portfolio/${img}`,
-      thumbnail: `/thumbnails/${img}`,
+      thumbnail: paths.webp,
+      blur: paths.blur,
       alt: 'Flooring Installation by Marvin\'s Contracting',
       category: 'flooring'
     });
   });
   
   paintingImages.forEach(img => {
+    const paths = getImagePaths(img);
     gallery.push({
       id: id++,
       url: `/portfolio/${img}`,
-      thumbnail: `/thumbnails/${img}`,
+      thumbnail: paths.webp,
+      blur: paths.blur,
       alt: 'Painting Services by Marvin\'s Contracting',
       category: 'painting'
     });
