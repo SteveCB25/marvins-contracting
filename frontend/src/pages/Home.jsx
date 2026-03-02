@@ -58,23 +58,11 @@ const Home = () => {
     message: ''
   });
 
-  // Fetch gallery images
+  // Use Cloudinary gallery directly - no API call needed
   useEffect(() => {
-    const fetchGallery = async () => {
-      try {
-        const response = await axios.get(`${API}/gallery`);
-        if (response.data && response.data.images) {
-          setGalleryImages(response.data.images);
-        } else {
-          setGalleryImages(fallbackGalleryImages);
-        }
-      } catch (error) {
-        setGalleryImages(fallbackGalleryImages);
-      } finally {
-        setIsLoadingGallery(false);
-      }
-    };
-    fetchGallery();
+    // Images are already loaded from Cloudinary via the import
+    setGalleryImages(fallbackGalleryImages);
+    setIsLoadingGallery(false);
   }, []);
 
   const filteredImages = activeFilter === 'all' 
