@@ -230,7 +230,8 @@ const Home = () => {
                       src={image.thumbnail || image.url}
                       alt={image.alt}
                       className="w-full h-[300px] sm:h-[350px] object-cover group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
+                      loading={index < 3 ? "eager" : "lazy"}
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-100 flex items-end justify-center pb-6">
                       <div className="text-center text-white px-4">
