@@ -477,7 +477,7 @@ const Home = () => {
                 <div key={index} className="aspect-[4/3] bg-gray-200 animate-pulse" />
               ))
             ) : (
-              filteredImages.slice(0, 12).map((image, index) => (
+              filteredImages.slice(0, 6).map((image, index) => (
                 <motion.div
                   key={image.id}
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -487,11 +487,12 @@ const Home = () => {
                   onClick={() => handleImageClick(index)}
                   className="group relative aspect-[4/3] overflow-hidden cursor-pointer bg-gray-100"
                 >
-                  <img
+                  <OptimizedImage
                     src={image.thumbnail}
+                    blur={image.blur}
                     alt={image.alt}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    loading={index < 6 ? "eager" : "lazy"}
+                    loading={index < 3 ? "eager" : "lazy"}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -508,12 +509,12 @@ const Home = () => {
             )}
           </div>
 
-          {filteredImages.length > 12 && (
+          {filteredImages.length > 6 && (
             <div className="text-center mt-12">
               <p className="text-gray-500">
                 {language === 'en' 
-                  ? `Showing 12 of ${filteredImages.length} projects` 
-                  : `Mostrando 12 de ${filteredImages.length} proyectos`}
+                  ? `Showing 6 of ${filteredImages.length} projects` 
+                  : `Mostrando 6 de ${filteredImages.length} proyectos`}
               </p>
             </div>
           )}
