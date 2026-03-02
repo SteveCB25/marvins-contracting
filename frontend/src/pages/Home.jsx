@@ -27,9 +27,11 @@ const Home = () => {
   const { language, toggleLanguage, t } = useLanguage();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [galleryImages, setGalleryImages] = useState([]);
+  const [allGalleryImages, setAllGalleryImages] = useState([]);
+  const [visibleImages, setVisibleImages] = useState([]);
   const [isLoadingGallery, setIsLoadingGallery] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loadedCount, setLoadedCount] = useState(12); // Start with 12 images
   const [formData, setFormData] = useState({
     name: '',
     email: '',
