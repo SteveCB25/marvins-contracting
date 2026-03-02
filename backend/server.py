@@ -11,7 +11,7 @@ import uuid
 from datetime import datetime, timezone
 
 # Import routes
-from routes import contact, gallery
+from routes import contact, gallery, admin
 
 
 ROOT_DIR = Path(__file__).parent
