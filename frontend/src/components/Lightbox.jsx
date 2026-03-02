@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Dialog, DialogContent } from './ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from './ui/dialog';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 const Lightbox = ({ images, currentIndex, isOpen, onClose, onNext, onPrev }) => {
   if (!images || images.length === 0) return null;
@@ -10,6 +11,9 @@ const Lightbox = ({ images, currentIndex, isOpen, onClose, onNext, onPrev }) => 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-6xl w-full p-0 bg-black/95 border-0">
+        <VisuallyHidden>
+          <DialogTitle>Project Image Gallery</DialogTitle>
+        </VisuallyHidden>
         <div className="relative w-full h-[90vh] flex items-center justify-center">
           {/* Close button */}
           <button
