@@ -211,84 +211,51 @@ const Home = () => {
             <p className="text-lg text-gray-600">{t.portfolio.subtitle}</p>
           </div>
           
-          {/* Mobile: Horizontal Scroll */}
-          <div className="block lg:hidden">
-            <div className="overflow-x-auto snap-x snap-mandatory scrollbar-hide">
-              <div className="flex gap-4 pb-4">
-                {isLoadingGallery ? (
-                  // Loading skeletons
-                  Array.from({ length: 6 }).map((_, index) => (
-                    <div key={index} className="flex-shrink-0 w-[85vw] h-[300px] bg-gray-300 rounded-lg animate-pulse"></div>
-                  ))
-                ) : (
-                  galleryImages.map((image, index) => (
-                    <div
-                      key={image.id}
-                      onClick={() => handleImageClick(index)}
-                      className="flex-shrink-0 w-[85vw] snap-center relative group cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all"
-                    >
-                      <img
-                        src={image.thumbnail || image.url}
-                        alt={image.alt}
-                        className="w-full h-[300px] object-cover group-active:scale-105 transition-transform duration-300"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                        <div className="text-center text-white px-4">
-                          <p className="font-semibold text-lg mb-1">{image.category?.charAt(0).toUpperCase() + image.category?.slice(1)}</p>
-                          <p className="text-sm opacity-90">{t.portfolio.viewAll}</p>
-                        </div>
+          {/* Horizontal Scroll Gallery (All Devices) */}
+          <div className="overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <div className="flex gap-4 sm:gap-6 pb-4">
+              {isLoadingGallery ? (
+                // Loading skeletons
+                Array.from({ length: 6 }).map((_, index) => (
+                  <div key={index} className="flex-shrink-0 w-[85vw] sm:w-[400px] lg:w-[450px] h-[300px] sm:h-[350px] bg-gray-300 rounded-lg animate-pulse"></div>
+                ))
+              ) : (
+                galleryImages.map((image, index) => (
+                  <div
+                    key={image.id}
+                    onClick={() => handleImageClick(index)}
+                    className="flex-shrink-0 w-[85vw] sm:w-[400px] lg:w-[450px] snap-center relative group cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all"
+                  >
+                    <img
+                      src={image.thumbnail || image.url}
+                      alt={image.alt}
+                      className="w-full h-[300px] sm:h-[350px] object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-100 flex items-end justify-center pb-6">
+                      <div className="text-center text-white px-4">
+                        <p className="font-bold text-lg mb-1">{image.category?.charAt(0).toUpperCase() + image.category?.slice(1)}</p>
+                        <p className="text-sm opacity-90">{t.portfolio.viewAll}</p>
                       </div>
-                      {/* Swipe indicator on first image */}
-                      {index === 0 && (
-                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-xs px-3 py-1 rounded-full animate-pulse">
-                          {language === 'en' ? 'Swipe for more →' : 'Desliza para más →'}
-                        </div>
-                      )}
                     </div>
-                  ))
-                )}
-              </div>
-            </div>
-            {/* Scroll indicator dots */}
-            <div className="flex justify-center gap-2 mt-6">
-              {!isLoadingGallery && galleryImages.length > 0 && (
-                <>
-                  {Array.from({ length: Math.min(5, Math.ceil(galleryImages.length / 5)) }).map((_, index) => (
-                    <div key={index} className="w-2 h-2 rounded-full bg-gray-300"></div>
-                  ))}
-                </>
+                    {/* Swipe indicator on first image */}
+                    {index === 0 && (
+                      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-xs px-3 py-1 rounded-full animate-pulse">
+                        {language === 'en' ? 'Scroll for more →' : 'Desplazar para más →'}
+                      </div>
+                    )}
+                  </div>
+                ))
               )}
             </div>
           </div>
-
-          {/* Desktop: Grid Layout */}
-          <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {isLoadingGallery ? (
-              // Loading skeletons
-              Array.from({ length: 6 }).map((_, index) => (
-                <div key={index} className="relative overflow-hidden rounded-lg shadow-md animate-pulse">
-                  <div className="w-full h-64 bg-gray-300"></div>
-                </div>
-              ))
-            ) : (
-              galleryImages.map((image, index) => (
-                <div
-                  key={image.id}
-                  onClick={() => handleImageClick(index)}
-                  className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all"
-                >
-                  <img
-                    src={image.thumbnail || image.url}
-                    alt={image.alt}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <p className="text-white font-medium">{t.portfolio.viewAll}</p>
-                  </div>
-                </div>
-              ))
+          
+          {/* Scroll indicator */}
+          <div className="flex justify-center gap-2 mt-8">
+            {!isLoadingGallery && galleryImages.length > 0 && (
+              <p className="text-sm text-gray-500">
+                {galleryImages.length} {language === 'en' ? 'projects' : 'proyectos'} • {language === 'en' ? 'Scroll to explore' : 'Desplazar para explorar'}
+              </p>
             )}
           </div>
         </div>
