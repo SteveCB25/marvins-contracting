@@ -102,7 +102,8 @@ async def create_gallery(image_input: gallery.GalleryImageCreate, database: Asyn
 # Include admin routes
 @api_router.post("/admin/populate-gallery")
 async def populate_gallery_route(database: AsyncIOMotorDatabase = Depends(get_database)):
-    return await admin.populate_gallery_endpoint(database)
+    from routes.admin import populate_gallery_db
+    return await populate_gallery_db(database)
 
 
 # Include the router in the main app
